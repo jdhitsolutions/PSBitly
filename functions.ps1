@@ -1,6 +1,10 @@
 # https://dev.bitly.com/v4_documentation.html
+
+#these are the public and exported functions for the module
+
 Function New-BitlyLink {
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType("PSBitlyLink")]
 
     Param(
         [Parameter(
@@ -28,11 +32,13 @@ Function New-BitlyLink {
         $uri = "https://api-ssl.bitly.com/v4/bitlinks"
 
         $irmParams = @{
-            ErrorAction = "Stop"
-            uri         = $uri
-            Headers     = $headers
-            Body        = $null
-            method      = "Post"
+            ErrorAction      = "Stop"
+            uri              = $uri
+            Headers          = $headers
+            Body             = $null
+            method           = "Post"
+            UseBasicParsing  = $True
+            disableKeepAlive = $True
         }
 
         Write-Verbose "[BEGIN  ] Using uri $uri"
@@ -45,12 +51,19 @@ Function New-BitlyLink {
         }
 
         $irmParams.Body = $body | ConvertTo-Json
-        write-Verbose "[PROCESS] Sending body"
+        Write-Verbose "[PROCESS] Sending body"
         $irmparams.body | Out-String | Write-Verbose
 
         if ($pscmdlet.ShouldProcess($url)) {
             Try {
-                Invoke-RestMethod @irmParams
+                $data = Invoke-RestMethod @irmParams
+                #create a custom class-based object for each result
+                foreach ($item in $data) {
+
+                    Write-Verbose "[PROCESS] Creating an object for $($item.id)"
+                    #invoke a private function
+                    _createPSBitlylink $item
+                }
             }
             catch {
                 Throw $_
@@ -65,6 +78,7 @@ Function New-BitlyLink {
 
 Function Get-BitlyLink {
     [cmdletbinding()]
+    [OutputType("PSBitlyLink")]
 
     Param(
         [parameter(
@@ -91,11 +105,13 @@ Function Get-BitlyLink {
 
         $baseuri = "https://api-ssl.bitly.com/v4/bitlinks"
         $irmParams = @{
-            ErrorAction = "Stop"
-            uri         = $null
-            Headers     = $headers
-            Body        = $null
-            method      = "Get"
+            ErrorAction      = "Stop"
+            uri              = $null
+            Headers          = $headers
+            Body             = $null
+            method           = "Get"
+            UseBasicParsing  = $True
+            disableKeepAlive = $True
         }
 
         Write-Verbose "[BEGIN  ] Using base uri $uri"
@@ -107,8 +123,14 @@ Function Get-BitlyLink {
         $irmParams.uri = "$baseuri/$ID"
 
         Try {
-            Invoke-RestMethod @irmParams
+            $data = Invoke-RestMethod @irmParams
+            #create a custom class-based object for each result
+            foreach ($item in $data) {
 
+                Write-Verbose "[PROCESS] Creating an object for $($item.id)"
+                #invoke a private function
+                _createPSBitlylink $item
+            }
         }
         catch {
             Throw $_
@@ -123,6 +145,8 @@ Function Get-BitlyLink {
 
 Function Set-BitlyLink {
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType("PSBitlyLink")]
+
 
     Param(
         [parameter(
@@ -152,11 +176,13 @@ Function Set-BitlyLink {
 
         $baseuri = "https://api-ssl.bitly.com/v4/bitlinks"
         $irmParams = @{
-            ErrorAction = "Stop"
-            uri         = $null
-            Headers     = $headers
-            Body        = $null
-            method      = "Patch"
+            ErrorAction      = "Stop"
+            uri              = $null
+            Headers          = $headers
+            Body             = $null
+            method           = "Patch"
+            UseBasicParsing  = $True
+            disableKeepAlive = $True
         }
 
         Write-Verbose "[BEGIN  ] Using base uri $uri"
@@ -175,7 +201,7 @@ Function Set-BitlyLink {
         }
 
         if ($archive) {
-            $body.Add("archived", "true")
+            $body.Add("archived", $true)
         }
 
         if ($body.keys.count -gt 0) {
@@ -187,9 +213,25 @@ Function Set-BitlyLink {
             Write-Verbose "[PROCESS] Setting link $ID"
             $irmParams.uri = "$baseuri/$ID"
 
+
             if ($PSCmdlet.ShouldProcess($id)) {
                 Try {
-                    Invoke-RestMethod @irmParams
+                    #insert a brief sleep statement so that when piping from New-PSBitly the new link will
+                    #have a chance to be registered with Bitly. Otherwise there is a risk of trying to
+                    #access and set a link that hasn't been created yet. This only works with a one-line
+                    #expression
+                    if ($MyInvocation.line -match "New-BitlyLink") {
+                        Write-Verbose "[PROCESS] Waiting 5 seconds for new link to be registered online."
+                        Start-Sleep -seconds 5
+                    }
+                    $data = Invoke-RestMethod @irmParams
+                    #create a custom class-based object for each result
+                    foreach ($item in $data) {
+
+                        Write-Verbose "[PROCESS] Creating an object for $($item.id)"
+                        #invoke a private function
+                        _createPSBitlylink $item
+                    }
                 }
                 Catch {
                     Throw $_
@@ -212,6 +254,7 @@ Function Set-BitlyLink {
 
 Function Get-BitlyUser {
     [cmdletbinding()]
+    [OutputType("PSBitlyUser")]
 
     Param(
         [Parameter(
@@ -227,7 +270,9 @@ Function Get-BitlyUser {
     } #begin
     Process {
         Write-Verbose "[PROCESS] Getting bitly user information."
-        Invoke-RestMethod -uri "https://api-ssl.bitly.com/v4/user" -Headers @{Authorization = "Bearer $bitly" }
+        $item = Invoke-RestMethod -uri "https://api-ssl.bitly.com/v4/user" -Headers @{Authorization = "Bearer $bitly" }
+        Write-Verbose "[PROCESS] Creating PSBitlyUser for $($item.login)"
+        _createPSBitlyUser -item $item
 
     } #process
     End {
@@ -241,20 +286,24 @@ Function Get-BitlyGroupLinks {
     Param(
         [Parameter(
             Mandatory,
-            HelpMessage = "Enter your Bitly group GUID", ValueFromPipelineByPropertyName
+            HelpMessage = "Enter your Bitly group GUID or ID", ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullorEmpty()]
         [alias("group_guid", "default_group_guid")]
         [string]$GroupID,
+
         [Parameter(
             Mandatory,
             HelpMessage = "Enter your Bitly API token"
         )]
         [ValidateNotNullorEmpty()]
         [string]$APIKey,
+
         [ValidateRange(1, 1000)]
         [int]$Size = 50,
+
         [string[]]$Tags,
+        [Parameter(Helpmessage = "Enter a key word or phrase to filter on")]
         [string]$Filter,
         [datetime]$CreatedBefore,
         [datetime]$CreatedAfter,
@@ -269,10 +318,12 @@ Function Get-BitlyGroupLinks {
         }
 
         $irmParams = @{
-            Headers     = $Headers
-            ErrorAction = "Stop"
-            uri         = $null
-            Method      = "Get"
+            Headers          = $Headers
+            ErrorAction      = "Stop"
+            uri              = $null
+            Method           = "Get"
+            UseBasicParsing  = $True
+            disableKeepAlive = $True
         }
 
     } #begin
@@ -291,16 +342,16 @@ Function Get-BitlyGroupLinks {
             $uri += "&query=$filter"
         }
         if ($CreatedBefore) {
-            $before = get-date $CreatedBefore -UFormat %s
+            $before = Get-Date $CreatedBefore -UFormat %s
             $uri += "&created_before=$before"
         }
         if ($CreatedAfter) {
-            $after = get-date $CreatedAfter -UFormat %s
+            $after = Get-Date $CreatedAfter -UFormat %s
             $uri += "&created_after=$after"
         }
 
         if ($ModifiedAfter) {
-            $after = get-date $ModifiedAfter -UFormat %s
+            $after = Get-Date $ModifiedAfter -UFormat %s
             $uri += "&created_after=$after"
         }
 
@@ -312,7 +363,14 @@ Function Get-BitlyGroupLinks {
             $result = Invoke-RestMethod @irmParams
 
             Write-Verbose "[PROCESS] Retrieved $($result.links.count) links"
-            $result.links
+            $data = $result.links
+            #create a custom class-based object for each result
+            foreach ($item in $data) {
+
+                Write-Verbose "[PROCESS] Creating an object for $($item.id)"
+                #invoke a private function
+                _createPSBitlylink $item
+            }
         }
         Catch {
             Throw $_
@@ -326,7 +384,7 @@ Function Get-BitlyGroupLinks {
 
 Function Get-BitlyLinkSummary {
     [cmdletbinding()]
-    [outputtype("bitly.LinkSummary")]
+    [outputtype("PSBitlySummary")]
 
     Param(
         [parameter(
@@ -362,10 +420,12 @@ Function Get-BitlyLinkSummary {
         }
 
         $irmParams = @{
-            Headers     = $Headers
-            ErrorAction = "Stop"
-            uri         = $null
-            Method      = "Get"
+            Headers          = $Headers
+            ErrorAction      = "Stop"
+            uri              = $null
+            Method           = "Get"
+            UseBasicParsing  = $True
+            disableKeepAlive = $True
         }
     } #begin
 
@@ -383,7 +443,7 @@ Function Get-BitlyLinkSummary {
 
             #write a custom object to the pipeline
             [pscustomobject]@{
-                PSTypename  = "bitly.LinkSummary"
+                PSTypename  = "PSBitlySummary"
                 ID          = $ID
                 TotalClicks = $result.total_clicks
                 Timespan    = $result.unit
@@ -440,11 +500,18 @@ Function Get-URLDetail {
             $data = Invoke-WebRequest @iwrParams
             Write-Verbose "[PROCESS] Analyzing $($data.BaseResponse.ResponseUri.AbsoluteUri)"
 
+            [regex]$rx = "\<title\>(?<pgTitle>.*)\<\/title\>"
+            if ($rx.ismatch($data.content)) {
+                $myTitle = $rx.Matches($data.Content).groups[-1].value
+            }
+            else {
+                $myTitle = $null
+            }
             [pscustomobject]@{
                 PSTypename  = "urlDetail"
                 URL         = $URL
                 AbsoluteURL = $data.BaseResponse.ResponseUri.AbsoluteUri
-                Title       = ([regex]"\<title\>(?<pgTitle>.*)\<\/title\>").Matches($data.Content).groups[-1].value
+                Title       = $myTitle
                 Date        = $data.baseResponse.LastModified
             }
         }
