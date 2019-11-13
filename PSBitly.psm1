@@ -1,25 +1,5 @@
 
-#region main code
-
-<#
-
-Name            TypeNameOfValue
-----            ---------------
-created_at      System.String
-id              System.String
-link            System.String
-custom_bitlinks System.Object[]
-long_url        System.String
-title           System.String
-archived        System.Boolean
-created_by      System.String
-client_id       System.String
-tags            System.Object[]
-deeplinks       System.Object[]
-references      System.Management.Automation.PSCustomObject
-
-
-#>
+#region classes
 
 Class PSBitlyLink {
 
@@ -57,7 +37,11 @@ Class PSBitlyUser {
 
     #the Raw property will hold the original result from the API request
     hidden [object]$Raw
+
+    # I am using a private function, _createPSBitlyUser as a constructor
 }
+
+#endregion
 
 # dot source public functions
 . $PSScriptRoot\functions.ps1
@@ -65,13 +49,20 @@ Class PSBitlyUser {
 #dot source private functions
 . $PSScriptRoot\private.ps1
 
-#define default display
-Update-Typedata -TypeName PSBitlyLinks -DefaultDisplayPropertySet "Created", "Link", "CustomLinks", "Title", "Tags", "ID", "Url" -Force
-Update-Typedata -TypeName PSBitlyUser -DefaultDisplayPropertySet "Name", "Email", "GroupID", "Created", "Modified" -Force
+#define default display properties
+Update-TypeData -TypeName PSBitlyLinks -DefaultDisplayPropertySet "Created", "Link", "CustomLinks", "Title", "Tags", "ID", "Url" -Force
+Update-TypeData -TypeName PSBitlyUser -DefaultDisplayPropertySet "Name", "Email", "GroupID", "Created", "Modified" -Force
 
-#endregion
+ $keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
+if (Test-Path $keyPath) {
+    try {
+        $APIToken = Import-Clixml -Path $keypath -ErrorAction stop
+        $global:PSDefaultParameterValues["*-bitly*:apikey"] = $APIToken
+    }
+    Catch {
+        Write-Warning "Failed to restore bitly API token from $keypath"
+        Throw $_
+    }
 
-#TODO - get tags by Group\
-#TODO - get summary click referral details
-#TODO - Verify archiving is an option that still works
-#TODO - help documents
+}
+

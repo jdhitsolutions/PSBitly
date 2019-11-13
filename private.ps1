@@ -30,8 +30,7 @@ Function _createPSBitlyUser {
     [cmdletbinding()]
     Param([object]$Item)
 
-     Write-Verbose "[PRIVATE] CreatePSBitlyUser"
-
+    Write-Verbose "[PRIVATE] CreatePSBitlyUser"
     $new = [PSBitlyUser]::new()
 
     $new.Created = $item.created
@@ -46,5 +45,24 @@ Function _createPSBitlyUser {
     $new.raw = $item
 
     $new
+}
 
+Function _ConvertSecureString {
+    [cmdletbinding()]
+    Param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [System.Security.SecureString]$SecureString
+    )
+    Try {
+        $ErrorActionPreference = "stop"
+        $bstr = [System.Runtime.InteropServices.marshal]::SecureStringToBSTR($SecureString)
+        [System.Runtime.InteropServices.marshal]::PtrToStringBSTR($bstr)
+        #$len = [system.text.encoding]::UTF8.Getbytes($bstr).count
+        #[System.Runtime.InteropServices.marshal]::PtrToStringAuto($bstr,$len)
+    }
+    Catch {
+        Write-Warning "Failed to convert secure string back to plain text."
+        Throw $_
+    }
 }

@@ -5,7 +5,7 @@
     RootModule = 'PSBitly.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.3.0'
+    ModuleVersion = '0.4.0'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Desktop','Core')
@@ -56,15 +56,14 @@
     # TypesToProcess = @()
 
     # Format files (.ps1xml) to be loaded when importing this module
-    FormatsToProcess = @('psbitlylinks.format.ps1xml')
+    FormatsToProcess = @('psbitlylinks.format.ps1xml','urldetail.format.ps1xml')
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @('Get-BitlyGroupLinks', 'Get-BitlyLink', 'Get-BitlyLinkSummary', 'Get-BitlyUser', 'New-BitlyLink', 'Set-BitlyLink',
-    'Get-URLDetail'
-)
+    'Get-URLDetail','Save-BitlyToken')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = @()
@@ -93,10 +92,10 @@
             Tags = @("bitly","bit.ly","shortener")
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/jdhitsolutions/PSBitly/blob/master/license.txt'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            ProjectUri = 'https://github.com/jdhitsolutions/PSBitly'
 
             # A URL to an icon representing this module.
             # IconUri = ''

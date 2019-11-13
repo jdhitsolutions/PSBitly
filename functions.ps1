@@ -20,15 +20,17 @@ Function New-BitlyLink {
             Mandatory,
             HelpMessage = "Enter your Bitly API token"
         )]
-        [string]$APIKey
+        [SecureString]$APIKey
     )
 
     Begin {
         Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        $Bearer = _ConvertSecureString $APIKey
         $headers = @{
             'Content-Type' = "application/json"
-            Authorization  = "Bearer $APIKey"
+            Authorization  = "Bearer $Bearer"
         }
+
         $uri = "https://api-ssl.bitly.com/v4/bitlinks"
 
         $irmParams = @{
@@ -96,12 +98,13 @@ Function Get-BitlyLink {
             HelpMessage = "Enter your Bitly API token"
         )]
         [ValidateNotNullorEmpty()]
-        [string]$APIKey
+        [SecureString]$APIKey
     )
 
     Begin {
         Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
-        $headers = @{Authorization = "Bearer $APIKey" }
+        $Bearer = _ConvertSecureString $APIKey
+        $headers = @{Authorization = "Bearer $Bearer" }
 
         $baseuri = "https://api-ssl.bitly.com/v4/bitlinks"
         $irmParams = @{
@@ -119,7 +122,7 @@ Function Get-BitlyLink {
 
     Process {
 
-        Write-Verbose "[PROCESS] Setting link $ID"
+        Write-Verbose "[PROCESS] Getting link $ID"
         $irmParams.uri = "$baseuri/$ID"
 
         Try {
@@ -147,7 +150,6 @@ Function Set-BitlyLink {
     [cmdletbinding(SupportsShouldProcess)]
     [OutputType("PSBitlyLink")]
 
-
     Param(
         [parameter(
             Position = 0,
@@ -164,14 +166,15 @@ Function Set-BitlyLink {
         [switch]$Archive,
         [Parameter(Mandatory, HelpMessage = "Enter your Bitly API token")]
         [ValidateNotNullorEmpty()]
-        [string]$APIKey
+        [SecureString]$APIKey
     )
 
     Begin {
         Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        $Bearer = _ConvertSecureString $APIKey
         $headers = @{
             'Content-Type' = "application/json"
-            Authorization  = "Bearer $APIKey"
+            Authorization  = "Bearer $Bearer"
         }
 
         $baseuri = "https://api-ssl.bitly.com/v4/bitlinks"
@@ -218,8 +221,8 @@ Function Set-BitlyLink {
                 Try {
                     #insert a brief sleep statement so that when piping from New-PSBitly the new link will
                     #have a chance to be registered with Bitly. Otherwise there is a risk of trying to
-                    #access and set a link that hasn't been created yet. This only works with a one-line
-                    #expression
+                    #access and set a link that hasn't been created yet online. This only works with a one-line
+                    #expression.
                     if ($MyInvocation.line -match "New-BitlyLink") {
                         Write-Verbose "[PROCESS] Waiting 5 seconds for new link to be registered online."
                         Start-Sleep -seconds 5
@@ -229,7 +232,7 @@ Function Set-BitlyLink {
                     foreach ($item in $data) {
 
                         Write-Verbose "[PROCESS] Creating an object for $($item.id)"
-                        #invoke a private function
+                        #invoke a private function to create a custom bitly link object
                         _createPSBitlylink $item
                     }
                 }
@@ -241,7 +244,6 @@ Function Set-BitlyLink {
         }
         else {
             Write-Warning "You didn't specify any changes for this link."
-
         }
 
     } #process
@@ -262,7 +264,7 @@ Function Get-BitlyUser {
             HelpMessage = "Enter your Bitly API token"
         )]
         [ValidateNotNullorEmpty()]
-        [string]$APIKey
+        [SecureString]$APIKey
     )
 
     Begin {
@@ -270,7 +272,10 @@ Function Get-BitlyUser {
     } #begin
     Process {
         Write-Verbose "[PROCESS] Getting bitly user information."
-        $item = Invoke-RestMethod -uri "https://api-ssl.bitly.com/v4/user" -Headers @{Authorization = "Bearer $bitly" }
+        $Bearer = _ConvertSecureString $APIKey
+        # uncomment for debugging and testing
+        #write-host $Bearer -ForegroundColor green
+        $item = Invoke-RestMethod -uri "https://api-ssl.bitly.com/v4/user" -Headers @{Authorization = "Bearer $bearer" }
         Write-Verbose "[PROCESS] Creating PSBitlyUser for $($item.login)"
         _createPSBitlyUser -item $item
 
@@ -282,14 +287,17 @@ Function Get-BitlyUser {
 
 Function Get-BitlyGroupLinks {
     [cmdletbinding()]
+    [OutputType("PSBitlyLink")]
 
     Param(
         [Parameter(
+            Position = 0,
             Mandatory,
-            HelpMessage = "Enter your Bitly group GUID or ID", ValueFromPipelineByPropertyName
+            HelpMessage = "Enter your Bitly group GUID or ID",
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullorEmpty()]
-        [alias("group_guid", "default_group_guid")]
         [string]$GroupID,
 
         [Parameter(
@@ -297,7 +305,7 @@ Function Get-BitlyGroupLinks {
             HelpMessage = "Enter your Bitly API token"
         )]
         [ValidateNotNullorEmpty()]
-        [string]$APIKey,
+        [SecureString]$APIKey,
 
         [ValidateRange(1, 1000)]
         [int]$Size = 50,
@@ -308,13 +316,16 @@ Function Get-BitlyGroupLinks {
         [datetime]$CreatedBefore,
         [datetime]$CreatedAfter,
         [datetime]$ModifiedAfter
-
     )
 
     Begin {
+        # $MyInvocation | out-string | write-host -for cyan
         Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Converting APIKey secure string"
+        $Bearer = _ConvertSecureString $APIKey
+
         $Headers = @{
-            Authorization = "Bearer $APIKey"
+            Authorization = "Bearer $Bearer"
         }
 
         $irmParams = @{
@@ -327,8 +338,10 @@ Function Get-BitlyGroupLinks {
         }
 
     } #begin
-    Process {
 
+    Process {
+        Write-Verbose "[PROCESS] Using these PSBoundparameters"
+        $Myinvocation.BoundParameters | Out-String | Write-Verbose
         Write-Verbose "[PROCESS] Getting bitly group links for $GroupID"
 
         $Uri = "https://api-ssl.bitly.com/v4/groups/$GroupID/bitlinks?size=$size"
@@ -377,6 +390,7 @@ Function Get-BitlyGroupLinks {
         }
 
     } #process
+
     End {
         Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
     } #end
@@ -387,7 +401,7 @@ Function Get-BitlyLinkSummary {
     [outputtype("PSBitlySummary")]
 
     Param(
-        [parameter(
+        [Parameter(
             Position = 0,
             Mandatory,
             HelpMessage = "Enter the bitly link i.e. bit.ly/<short>",
@@ -402,7 +416,7 @@ Function Get-BitlyLinkSummary {
             HelpMessage = "Enter your Bitly API token"
         )]
         [ValidateNotNullorEmpty()]
-        [string]$APIKey,
+        [SecureString]$APIKey,
         [Parameter(HelpMessage = "Enter a unit of time")]
         [ValidateSet("day", "minute", "hour", "week", "month")]
         [string]$Timespan = "day",
@@ -415,8 +429,9 @@ Function Get-BitlyLinkSummary {
     Begin {
         Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
 
+        $Bearer = _ConvertSecureString $APIKey
         $Headers = @{
-            Authorization = "Bearer $APIKey"
+            Authorization = "Bearer $Bearer"
         }
 
         $irmParams = @{
@@ -524,3 +539,31 @@ Function Get-URLDetail {
         Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
     } #end
 }
+
+Function Save-BitlyToken {
+    [cmdletbinding(SupportsShouldProcess)]
+    Param()
+    Begin {
+        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+    } #begin
+
+    Process {
+        $secure = Read-Host "Enter or copy your Bitly API key or token." -AsSecureString
+        $keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
+        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Exporting key to $keyPath"
+        If ($PSCmdlet.ShouldProcess($keyPath)) {
+            Try {
+                $secure | Export-Clixml -Path $keypath -ErrorAction Stop
+            }
+            catch {
+                Throw $_
+            }
+            $global:PSDefaultParameterValues["*-bitly*:apikey"] = $secure
+        }
+    } #process
+
+    End {
+        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
+    } #end
+
+} #close Save-BitlyToken
