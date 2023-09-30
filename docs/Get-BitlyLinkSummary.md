@@ -14,8 +14,7 @@ Get a summary of clicks for a bitly link.
 ## SYNTAX
 
 ```yaml
-Get-BitlyLinkSummary [-ID] <String> -APIKey <SecureString> [-Timespan <String>] [-Count <Int32>]
- [-Size <Int32>] [<CommonParameters>]
+Get-BitlyLinkSummary [-ID] <String> -APIKey <SecureString> [-Timespan <String>] [-Count <Int32>] [-Size <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,14 +26,14 @@ You can use this command to get a summary of clicks for a given bitly link over 
 ### Example 1
 
 ```powershell
-PS C:\> Get-BitlyLinkSummary bit.ly/2KJtUqP -Timespan month -Count 3
+PS C:\> Get-BitlyLinkSummary bit.ly/39MTiZ8 -Timespan month -Count 1
 
 ID             TotalClicks Timespan Count Date
 --             ----------- -------- ----- ----
-bit.ly/2KJtUqP 426         month    3     11/13/2019 3:56:01 PM
+bit.ly/39MTiZ8 70                   1     4/8/2021 11:48:22 AM
 ```
 
-Get a link summary for the last 3 months.
+Get a link summary for the last 1 months.
 
 ## PARAMETERS
 
@@ -138,4 +137,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-BitlyLink]()
+[Get-BitlyLink](Get-BitlyLink.md)

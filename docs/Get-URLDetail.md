@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Get online details from a url
+Get online details from a url.
 
 ## SYNTAX
 
@@ -26,13 +26,12 @@ This command will retrieve metadata about a given URL using Invoke-WebRequest. I
 ### Example 1
 
 ```powershell
-PS C:\> get-urldetail http://bit.ly/2CHVAYy
+PS C:\> get-urldetail http://bit.ly/3tdSofy
 
-
-URL         : http://bit.ly/2CHVAYy
-AbsoluteURL : https://www.dropbox.com/s/5iz1vvhvtbfxdcd/CreatingRESTTools.zip
-Title       : Dropbox - CreatingRESTTools.zip - Simplify your life
-Date        : 11/13/2019 4:14:32 PM
+URL         : http://bit.ly/3tdSofy
+AbsoluteURL : https://adamtheautomator.com/add-computer-to-domain/
+Title       : How to Add a Computer to a Domain [All the Ways]
+Date        : 4/7/2021 1:09:28 PM
 ```
 
 ## PARAMETERS

@@ -42,7 +42,7 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip
 
 ### -APIKey
 
-Enter your Bitly API token
+Enter your Bitly API token.
 
 ```yaml
 Type: SecureString
@@ -91,4 +91,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-BitlyGroupLinks]()
+[Get-BitlyGroupLinks](Get-BitlyGroupLinks.md)

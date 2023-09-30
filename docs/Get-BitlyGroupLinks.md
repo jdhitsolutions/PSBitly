@@ -8,14 +8,14 @@ schema: 2.0.0
 # Get-BitlyGroupLinks
 
 ## SYNOPSIS
+
 Get bitly links associated with your group
 
 ## SYNTAX
 
 ```yaml
-Get-BitlyGroupLinks [-GroupID] <String> -APIKey <SecureString> [-Size <Int32>] [-Tags <String[]>]
- [-Filter <String>] [-CreatedBefore <DateTime>] [-CreatedAfter <DateTime>] [-ModifiedAfter <DateTime>]
- [<CommonParameters>]
+Get-BitlyGroupLinks [-GroupID] <String> -APIKey <SecureString> [-Size <Int32>] [-Tags <String[]>] [-Filter <String>] [-CreatedBefore <DateTime>]
+-CreatedAfter <DateTime>] [-ModifiedAfter <DateTime>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,38 +29,39 @@ Use this command to get links associated with your group ID which you can find a
 ```powershell
 PS C:\>  Get-BitlyUser | Get-BitlyGroupLinks
 
-Created     : 10/21/2019 5:12:15 AM
-Link        : http://bit.ly/2oY3qty
+Created     : 4/8/2021 9:01:47 AM
+Link        : https://bit.ly/3tdSofy
 CustomLinks : {}
-Title       : Securing PowerShell
-Tags        : {class, PowerShell}
-ID          : bit.ly/2oY3qty
-Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip
+Title       : How to Add a Computer to a Domain [All the Ways]
+Tags        : {}
+ID          : bit.ly/3tdSofy
+Url         : https://adamtheautomator.com/add-computer-to-domain/
 
-Created     : 9/22/2019 7:46:54 PM
-Link        : http://bit.ly/2kZgOeW
-CustomLinks : {http://bit.ly/PowerShell-Advanced-Spiceworld2019}
-Title       : PowerShell Advanced Spiceworld 2019
-Tags        : {conference, powershell}
-ID          : bit.ly/2kZgOeW
-Url         : https://www.dropbox.com/s/7kdjfc7fvvjvjtr/PowerShell-Advanced-Spiceworld2019.zip?dl=0
+Created     : 4/7/2021 10:59:17 AM
+Link        : https://bit.ly/3wzzL7X
+CustomLinks : {}
+Title       : CloudSkills.fm
+Tags        : {}
+ID          : bit.ly/3wzzL7X
+Url         : https://cloudskills.fm/episodes/114-BI8Ng7H9
 
-Created     : 9/22/2019 7:44:45 PM
-Link        : http://bit.ly/2mvnz8X
-CustomLinks : {http://bit.ly/PowerShell-Fundamentals-Spiceworld2019}
-Title       : PowerShell Fundamentals Spiceworld 109
-Tags        : {conference, powershell}
-ID          : bit.ly/2mvnz8X
-Url         : https://www.dropbox.com/s/pjal0m0lgxeds8h/PowerShell-Fundamentals-Spiceworld2019.zip?dl=0
-
+Created     : 4/7/2021 10:01:48 AM
+Link        : https://bit.ly/2OyV4pi
+CustomLinks : {}
+Title       : How to Run Remote Commands with the Ansible Shell Module
+Tags        : {}
+ID          : bit.ly/2OyV4pi
+Url         : https://adamtheautomator.com/ansible-shell/
 ...
 ```
+
+This example assumes you have set a PSDefaultParameterValue to specify the APIKey.
 
 ## PARAMETERS
 
 ### -APIKey
 
-Enter your Bitly API token
+Enter your Bitly API token.
 
 ```yaml
 Type: SecureString
@@ -196,7 +197,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSBitlyLink
 
 ## NOTES
 
@@ -205,6 +206,6 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-BitlyUser]()
+[Get-BitlyUser](Get-BitlyUser.md)
 
-[Get-BitlyLink]()
+[Get-BitlyLink](Get-BitlyLink.md)

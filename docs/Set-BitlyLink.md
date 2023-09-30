@@ -9,13 +9,12 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Modify an existing bitly link
+Modify an existing bitly link.
 
 ## SYNTAX
 
 ```yaml
-Set-BitlyLink [-ID] <String> [-Title <String>] [-Tags <String[]>] [-Archive] -APIKey <SecureString> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Set-BitlyLink [-ID] <String> [-Title <String>] [-Tags <String[]>] [-Archive] -APIKey <SecureString> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -173,4 +172,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[New-BitlyLink]()
+[New-BitlyLink](New-BitlyLink.md)

@@ -44,25 +44,26 @@ Class PSBitlyUser {
 #endregion
 
 # dot source public functions
-. $PSScriptRoot\functions.ps1
+. $PSScriptRoot\functions\functions.ps1
 
 #dot source private functions
-. $PSScriptRoot\private.ps1
+. $PSScriptRoot\functions\private.ps1
 
 #define default display properties
 Update-TypeData -TypeName PSBitlyLinks -DefaultDisplayPropertySet "Created", "Link", "CustomLinks", "Title", "Tags", "ID", "Url" -Force
 Update-TypeData -TypeName PSBitlyUser -DefaultDisplayPropertySet "Name", "Email", "GroupID", "Created", "Modified" -Force
 
- $keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
-if (Test-Path $keyPath) {
+$keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
+if (Test-Path -path $keyPath) {
+    #convert path to a full system path
+    $cPath = Convert-Path -path $keyPath
     try {
-        $APIToken = Import-Clixml -Path $keypath -ErrorAction stop
+        $APIToken = Import-Clixml -Path $cPath -ErrorAction stop
         $global:PSDefaultParameterValues["*-bitly*:apikey"] = $APIToken
     }
     Catch {
         Write-Warning "Failed to restore bitly API token from $keypath"
         Throw $_
     }
-
 }
 

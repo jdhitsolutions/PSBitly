@@ -1,7 +1,7 @@
 #these are internal and private helper functions
 
 function _createPSBitlyLink {
-    [cmdletbinding()]
+    [CmdletBinding()]
     Param(
         [object]$Item
     )
@@ -27,7 +27,7 @@ function _createPSBitlyLink {
 }
 
 Function _createPSBitlyUser {
-    [cmdletbinding()]
+    [CmdletBinding()]
     Param([object]$Item)
 
     Write-Verbose "[PRIVATE] CreatePSBitlyUser"
@@ -48,7 +48,7 @@ Function _createPSBitlyUser {
 }
 
 Function _ConvertSecureString {
-    [cmdletbinding()]
+    [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -65,4 +65,14 @@ Function _ConvertSecureString {
         Write-Warning "Failed to convert secure string back to plain text."
         Throw $_
     }
+}
+
+function _ToTitleCase {
+    [CmdletBinding()]
+    Param(
+        [String]$Text
+    )
+
+    [System.Globalization.CultureInfo]::CurrentCulture.TextInfo.ToTitleCase($text)
+
 }

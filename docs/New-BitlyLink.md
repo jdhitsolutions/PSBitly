@@ -26,23 +26,22 @@ Create a new bitly link from a given url. You can use Set-Bitlylink to customize
 ### Example 1
 
 ```powershell
-PS C:\> New-BitlyLink -url https://github.com/powershell/powershell
+PS C:\> New-BitlyLink -url  https://github.com/jdhitsolutions/jdhitsolutions
 
-
-Created     : 12/31/1969 7:00:00 PM
-Link        : http://bit.ly/32GPRwt
+Created     : 4/8/2021 11:34:07 AM
+Link        : https://bit.ly/3fUJsIb
 CustomLinks : {}
 Title       :
 Tags        : {}
-ID          : bit.ly/32GPRwt
-Url         : https://github.com/powershell/powershell
+ID          : bit.ly/3fUJsIb
+Url         : https://github.com/jdhitsolutions/jdhitsolutions
 ```
 
 ## PARAMETERS
 
 ### -APIKey
 
-Enter your Bitly API token
+Enter your Bitly API token.
 
 ```yaml
 Type: SecureString
@@ -124,4 +123,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Set-BitlyLink]()
+[Set-BitlyLink](Set-BitlyLink.md)

@@ -1,1 +1,3 @@
-Get-BitlyGroupLinks -Size 5 | Select-object Created,ID,CustomLinks,Title,Tags,Url
+Param($count = 5)
+Get-BitlyGroupLinks -Size $Count
+#| Select-object Created,ID,CustomLinks,Title,Tags,Url

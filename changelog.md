@@ -1,5 +1,11 @@
 # Change Log for PSBitly
 
+## v0.5.0
+
++ added `about_psbitly` help topic
++ Updated `README.md`
++ Updated `license.txt`
+
 ## v0.4.0
 
 + Added `Save-BitlyToken` to store API key as an exported secure string
@@ -7,6 +13,7 @@
 + Modified commands to accept a secure string for the API key
 + Added formatting file for `urldetail` type
 + Added command help documentation
++ Updated `README.md`
 
 ## v0.3.0
 

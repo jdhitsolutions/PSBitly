@@ -40,7 +40,7 @@ Modified : 11/2/2018 11:27:22 AM
 
 ### -APIKey
 
-Enter your Bitly API token
+Enter your Bitly API token.
 
 ```yaml
 Type: SecureString
@@ -73,4 +73,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-BitlyGroupLinks]()
+[Get-BitlyGroupLinks](Get-BitlyGroupLinks.md)

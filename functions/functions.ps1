@@ -3,7 +3,7 @@
 #these are the public and exported functions for the module
 
 Function New-BitlyLink {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     [OutputType("PSBitlyLink")]
 
     Param(
@@ -13,8 +13,8 @@ Function New-BitlyLink {
             HelpMessage = "Enter the long url to shorten",
             ValueFromPipeline
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$Url,
+        [ValidateNotNullOrEmpty()]
+        [String]$Url,
 
         [Parameter(
             Mandatory,
@@ -24,7 +24,7 @@ Function New-BitlyLink {
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
         $Bearer = _ConvertSecureString $APIKey
         $headers = @{
             'Content-Type' = "application/json"
@@ -56,7 +56,7 @@ Function New-BitlyLink {
         Write-Verbose "[PROCESS] Sending body"
         $irmparams.body | Out-String | Write-Verbose
 
-        if ($pscmdlet.ShouldProcess($url)) {
+        if ($PSCmdlet.ShouldProcess($url)) {
             Try {
                 $data = Invoke-RestMethod @irmParams
                 #create a custom class-based object for each result
@@ -70,16 +70,16 @@ Function New-BitlyLink {
             catch {
                 Throw $_
             }
-        } #whatif
+        } #WhatIf
     } #process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }
 
 Function Get-BitlyLink {
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType("PSBitlyLink")]
 
     Param(
@@ -90,19 +90,19 @@ Function Get-BitlyLink {
             ValueFromPipeline,
             ValueFromPipelineByPropertyName
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$ID,
+        [ValidateNotNullOrEmpty()]
+        [String]$ID,
 
         [Parameter(
             Mandatory,
             HelpMessage = "Enter your Bitly API token"
         )]
-        [ValidateNotNullorEmpty()]
+        [ValidateNotNullOrEmpty()]
         [SecureString]$APIKey
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
         $Bearer = _ConvertSecureString $APIKey
         $headers = @{Authorization = "Bearer $Bearer" }
 
@@ -142,12 +142,12 @@ Function Get-BitlyLink {
     } #process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }
 
 Function Set-BitlyLink {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     [OutputType("PSBitlyLink")]
 
     Param(
@@ -158,19 +158,19 @@ Function Set-BitlyLink {
             ValueFromPipeline,
             ValueFromPipelineByPropertyName
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$ID,
+        [ValidateNotNullOrEmpty()]
+        [String]$ID,
         [parameter(ValueFromPipelineByPropertyName)]
-        [string]$Title,
+        [String]$Title,
         [string[]]$Tags,
-        [switch]$Archive,
+        [Switch]$Archive,
         [Parameter(Mandatory, HelpMessage = "Enter your Bitly API token")]
-        [ValidateNotNullorEmpty()]
+        [ValidateNotNullOrEmpty()]
         [SecureString]$APIKey
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
         $Bearer = _ConvertSecureString $APIKey
         $headers = @{
             'Content-Type' = "application/json"
@@ -225,7 +225,7 @@ Function Set-BitlyLink {
                     #expression.
                     if ($MyInvocation.line -match "New-BitlyLink") {
                         Write-Verbose "[PROCESS] Waiting 5 seconds for new link to be registered online."
-                        Start-Sleep -seconds 5
+                        Start-Sleep -Seconds 5
                     }
                     $data = Invoke-RestMethod @irmParams
                     #create a custom class-based object for each result
@@ -249,13 +249,13 @@ Function Set-BitlyLink {
     } #process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 
 }
 
 Function Get-BitlyUser {
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType("PSBitlyUser")]
 
     Param(
@@ -263,30 +263,30 @@ Function Get-BitlyUser {
             Mandatory,
             HelpMessage = "Enter your Bitly API token"
         )]
-        [ValidateNotNullorEmpty()]
+        [ValidateNotNullOrEmpty()]
         [SecureString]$APIKey
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
     } #begin
     Process {
         Write-Verbose "[PROCESS] Getting bitly user information."
         $Bearer = _ConvertSecureString $APIKey
         # uncomment for debugging and testing
-        #write-host $Bearer -ForegroundColor green
-        $item = Invoke-RestMethod -uri "https://api-ssl.bitly.com/v4/user" -Headers @{Authorization = "Bearer $bearer" }
+        #Write-Host $Bearer -ForegroundColor green
+        $item = Invoke-RestMethod -Uri "https://api-ssl.bitly.com/v4/user" -Headers @{Authorization = "Bearer $bearer" }
         Write-Verbose "[PROCESS] Creating PSBitlyUser for $($item.login)"
         _createPSBitlyUser -item $item
 
     } #process
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }
 
 Function Get-BitlyGroupLinks {
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType("PSBitlyLink")]
 
     Param(
@@ -297,30 +297,30 @@ Function Get-BitlyGroupLinks {
             ValueFromPipeline,
             ValueFromPipelineByPropertyName
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$GroupID,
+        [ValidateNotNullOrEmpty()]
+        [String]$GroupID,
 
         [Parameter(
             Mandatory,
             HelpMessage = "Enter your Bitly API token"
         )]
-        [ValidateNotNullorEmpty()]
+        [ValidateNotNullOrEmpty()]
         [SecureString]$APIKey,
 
         [ValidateRange(1, 1000)]
-        [int]$Size = 50,
+        [Int]$Size = 50,
 
         [string[]]$Tags,
         [Parameter(Helpmessage = "Enter a key word or phrase to filter on")]
-        [string]$Filter,
-        [datetime]$CreatedBefore,
-        [datetime]$CreatedAfter,
-        [datetime]$ModifiedAfter
+        [String]$Filter,
+        [DateTime]$CreatedBefore,
+        [DateTime]$CreatedAfter,
+        [DateTime]$ModifiedAfter
     )
 
     Begin {
-        # $MyInvocation | out-string | write-host -for cyan
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        # $MyInvocation | Out-String | Write-Host -for cyan
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
         Write-Verbose "[BEGIN  ] Converting APIKey secure string"
         $Bearer = _ConvertSecureString $APIKey
 
@@ -340,7 +340,7 @@ Function Get-BitlyGroupLinks {
     } #begin
 
     Process {
-        Write-Verbose "[PROCESS] Using these PSBoundparameters"
+        Write-Verbose "[PROCESS] Using these PSBoundParameters"
         $Myinvocation.BoundParameters | Out-String | Write-Verbose
         Write-Verbose "[PROCESS] Getting bitly group links for $GroupID"
 
@@ -392,13 +392,13 @@ Function Get-BitlyGroupLinks {
     } #process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }
 
 Function Get-BitlyLinkSummary {
-    [cmdletbinding()]
-    [outputtype("PSBitlySummary")]
+    [CmdletBinding()]
+    [OutputType("PSBitlySummary")]
 
     Param(
         [Parameter(
@@ -408,26 +408,26 @@ Function Get-BitlyLinkSummary {
             ValueFromPipeline,
             ValueFromPipelineByPropertyName
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$ID,
+        [ValidateNotNullOrEmpty()]
+        [String]$ID,
 
         [Parameter(
             Mandatory,
             HelpMessage = "Enter your Bitly API token"
         )]
-        [ValidateNotNullorEmpty()]
+        [ValidateNotNullOrEmpty()]
         [SecureString]$APIKey,
         [Parameter(HelpMessage = "Enter a unit of time")]
-        [ValidateSet("day", "minute", "hour", "week", "month")]
-        [string]$Timespan = "day",
+        [ValidateSet("Day", "Minute", "Hour", "Week", "Month")]
+        [String]$Timespan = "Day",
         [Parameter(HelpMessage = "An integer representing the time units to query data for. Use -1 to return all units of time.")]
-        [int]$Count = -1,
+        [Int]$Count = -1,
         [ValidateRange(1, 1000)]
-        [int]$Size = 50
+        [Int]$Size = 50
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
 
         $Bearer = _ConvertSecureString $APIKey
         $Headers = @{
@@ -446,22 +446,24 @@ Function Get-BitlyLinkSummary {
 
     Process {
         Write-Verbose "[PROCESS] Getting click summary for $ID"
-        $uri = "https://api-ssl.bitly.com/v4/bitlinks/$ID/clicks/summary?unit=$Timespan&units=$count&size=$size"
+        #  https://dev.bitly.com/api-reference#getClicksForBitlink
+        $uri = "https://api-ssl.bitly.com/v4/bitlinks/$ID/clicks/summary?unit=$($Timespan.tolower())&units=$count&size=$size"
 
         $irmParams.uri = $uri
 
         Try {
-            Write-Verbose "[PROCESS] Using Invoke-Restmethod parameters"
+            Write-Verbose "[PROCESS] Using Invoke-RestMethod parameters"
             $irmParams | Out-String | Write-Verbose
 
             $result = Invoke-RestMethod @irmParams
 
             #write a custom object to the pipeline
-            [pscustomobject]@{
+            [PSCustomObject]@{
                 PSTypename  = "PSBitlySummary"
                 ID          = $ID
+                Title       = (Get-BitlyLink -id $ID -APIKey $APIKey).Title
                 TotalClicks = $result.total_clicks
-                Timespan    = $result.unit
+                Timespan    = (_ToTitleCase $Timespan)
                 Count       = $result.units
                 Date        = $result.unit_reference -as [DateTime]
             }
@@ -474,12 +476,12 @@ Function Get-BitlyLinkSummary {
     } #process
 
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }
 
 Function Get-URLDetail {
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType("urlDetail")]
 
     Param(
@@ -492,11 +494,11 @@ Function Get-URLDetail {
         )]
         [ValidatePattern("^http")]
         [alias("link")]
-        [string]$URL
+        [String]$URL
     )
 
     Begin {
-        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
 
         #parsedhtml takes too long and fails for sites like GitHub
         $iwrParams = @{
@@ -522,12 +524,22 @@ Function Get-URLDetail {
             else {
                 $myTitle = $null
             }
-            [pscustomobject]@{
+
+            #The webrequest result differs between Windows PowerShell and PowerShell 7.x
+            if ($PSVersionTable.PSVersion.Major -eq 7) {
+                $date = $data.BaseResponse.content.headers.LastModified.LocalDateTime
+                $absolute = $data.BaseResponse.RequestMessage.RequestUri.AbsoluteUri
+            }
+            else {
+                $date = $data.baseResponse.LastModified
+                $absolute = $data.BaseResponse.ResponseUri.AbsoluteUri
+            }
+            [PSCustomObject]@{
                 PSTypename  = "urlDetail"
                 URL         = $URL
-                AbsoluteURL = $data.BaseResponse.ResponseUri.AbsoluteUri
+                AbsoluteURL = $absolute
                 Title       = $myTitle
-                Date        = $data.baseResponse.LastModified
+                Date        = $date
             }
         }
         Catch {
@@ -536,21 +548,21 @@ Function Get-URLDetail {
 
     } #process
     End {
-        Write-Verbose "[END    ] Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "[END    ] Ending: $($MyInvocation.MyCommand)"
     } #end
 }
 
 Function Save-BitlyToken {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     Param()
     Begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
     } #begin
 
     Process {
         $secure = Read-Host "Enter or copy your Bitly API key or token." -AsSecureString
         $keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Exporting key to $keyPath"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Exporting key to $keyPath"
         If ($PSCmdlet.ShouldProcess($keyPath)) {
             Try {
                 $secure | Export-Clixml -Path $keypath -ErrorAction Stop
@@ -563,7 +575,7 @@ Function Save-BitlyToken {
     } #process
 
     End {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
     } #end
 
 } #close Save-BitlyToken
