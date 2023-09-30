@@ -106,7 +106,7 @@ Function Get-BitlyLink {
         $Bearer = _ConvertSecureString $APIKey
         $headers = @{Authorization = "Bearer $Bearer" }
 
-        $baseuri = "https://api-ssl.bitly.com/v4/bitlinks"
+        $BaseUri = "https://api-ssl.bitly.com/v4/bitlinks"
         $irmParams = @{
             ErrorAction      = "Stop"
             uri              = $null
@@ -123,7 +123,7 @@ Function Get-BitlyLink {
     Process {
 
         Write-Verbose "[PROCESS] Getting link $ID"
-        $irmParams.uri = "$baseuri/$ID"
+        $irmParams.uri = "$BaseUri/$ID"
 
         Try {
             $data = Invoke-RestMethod @irmParams
@@ -177,7 +177,7 @@ Function Set-BitlyLink {
             Authorization  = "Bearer $Bearer"
         }
 
-        $baseuri = "https://api-ssl.bitly.com/v4/bitlinks"
+        $BaseUri = "https://api-ssl.bitly.com/v4/bitlinks"
         $irmParams = @{
             ErrorAction      = "Stop"
             uri              = $null
@@ -214,7 +214,7 @@ Function Set-BitlyLink {
             $irmparams.body | Out-String | Write-Verbose
 
             Write-Verbose "[PROCESS] Setting link $ID"
-            $irmParams.uri = "$baseuri/$ID"
+            $irmParams.uri = "$BaseUri/$ID"
 
 
             if ($PSCmdlet.ShouldProcess($id)) {
@@ -311,7 +311,7 @@ Function Get-BitlyGroupLinks {
         [Int]$Size = 50,
 
         [string[]]$Tags,
-        [Parameter(Helpmessage = "Enter a key word or phrase to filter on")]
+        [Parameter(HelpMessage = "Enter a key word or phrase to filter on")]
         [String]$Filter,
         [DateTime]$CreatedBefore,
         [DateTime]$CreatedAfter,
@@ -341,7 +341,7 @@ Function Get-BitlyGroupLinks {
 
     Process {
         Write-Verbose "[PROCESS] Using these PSBoundParameters"
-        $Myinvocation.BoundParameters | Out-String | Write-Verbose
+        $MyInvocation.BoundParameters | Out-String | Write-Verbose
         Write-Verbose "[PROCESS] Getting bitly group links for $GroupID"
 
         $Uri = "https://api-ssl.bitly.com/v4/groups/$GroupID/bitlinks?size=$size"
@@ -371,7 +371,7 @@ Function Get-BitlyGroupLinks {
         $irmParams.uri = $uri
 
         Try {
-            Write-Verbose "[PROCESS] Using Invoke-Restmethod parameters"
+            Write-Verbose "[PROCESS] Using Invoke-RestMethod parameters"
             $irmParams | Out-String | Write-Verbose
             $result = Invoke-RestMethod @irmParams
 
@@ -419,7 +419,7 @@ Function Get-BitlyLinkSummary {
         [SecureString]$APIKey,
         [Parameter(HelpMessage = "Enter a unit of time")]
         [ValidateSet("Day", "Minute", "Hour", "Week", "Month")]
-        [String]$Timespan = "Day",
+        [String]$TimeSpan = "Day",
         [Parameter(HelpMessage = "An integer representing the time units to query data for. Use -1 to return all units of time.")]
         [Int]$Count = -1,
         [ValidateRange(1, 1000)]
@@ -447,7 +447,7 @@ Function Get-BitlyLinkSummary {
     Process {
         Write-Verbose "[PROCESS] Getting click summary for $ID"
         #  https://dev.bitly.com/api-reference#getClicksForBitlink
-        $uri = "https://api-ssl.bitly.com/v4/bitlinks/$ID/clicks/summary?unit=$($Timespan.tolower())&units=$count&size=$size"
+        $uri = "https://api-ssl.bitly.com/v4/bitlinks/$ID/clicks/summary?unit=$($TimeSpan.tolower())&units=$count&size=$size"
 
         $irmParams.uri = $uri
 
@@ -463,7 +463,7 @@ Function Get-BitlyLinkSummary {
                 ID          = $ID
                 Title       = (Get-BitlyLink -id $ID -APIKey $APIKey).Title
                 TotalClicks = $result.total_clicks
-                Timespan    = (_ToTitleCase $Timespan)
+                TimeSpan    = (_ToTitleCase $TimeSpan)
                 Count       = $result.units
                 Date        = $result.unit_reference -as [DateTime]
             }
@@ -500,7 +500,7 @@ Function Get-URLDetail {
     Begin {
         Write-Verbose "[BEGIN  ] Starting: $($MyInvocation.MyCommand)"
 
-        #parsedhtml takes too long and fails for sites like GitHub
+        #parsed html takes too long and fails for sites like GitHub
         $iwrParams = @{
             ErrorAction      = "Stop"
             DisableKeepAlive = $True
@@ -518,14 +518,14 @@ Function Get-URLDetail {
             Write-Verbose "[PROCESS] Analyzing $($data.BaseResponse.ResponseUri.AbsoluteUri)"
 
             [regex]$rx = "\<title\>(?<pgTitle>.*)\<\/title\>"
-            if ($rx.ismatch($data.content)) {
+            if ($rx.IsMatch($data.content)) {
                 $myTitle = $rx.Matches($data.Content).groups[-1].value
             }
             else {
                 $myTitle = $null
             }
 
-            #The webrequest result differs between Windows PowerShell and PowerShell 7.x
+            #The web request result differs between Windows PowerShell and PowerShell 7.x
             if ($PSVersionTable.PSVersion.Major -eq 7) {
                 $date = $data.BaseResponse.content.headers.LastModified.LocalDateTime
                 $absolute = $data.BaseResponse.RequestMessage.RequestUri.AbsoluteUri
@@ -561,16 +561,16 @@ Function Save-BitlyToken {
 
     Process {
         $secure = Read-Host "Enter or copy your Bitly API key or token." -AsSecureString
-        $keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
-        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Exporting key to $keyPath"
-        If ($PSCmdlet.ShouldProcess($keyPath)) {
+        $KeyPath = Join-Path -Path ~ -ChildPath BitlyToken.xml
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Exporting key to $KeyPath"
+        If ($PSCmdlet.ShouldProcess($KeyPath)) {
             Try {
-                $secure | Export-Clixml -Path $keypath -ErrorAction Stop
+                $secure | Export-Clixml -Path $KeyPath -ErrorAction Stop
             }
             catch {
                 Throw $_
             }
-            $global:PSDefaultParameterValues["*-bitly*:apikey"] = $secure
+            $global:PSDefaultParameterValues["*-bitly*:APIKey"] = $secure
         }
     } #process
 

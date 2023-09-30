@@ -53,16 +53,16 @@ Class PSBitlyUser {
 Update-TypeData -TypeName PSBitlyLinks -DefaultDisplayPropertySet "Created", "Link", "CustomLinks", "Title", "Tags", "ID", "Url" -Force
 Update-TypeData -TypeName PSBitlyUser -DefaultDisplayPropertySet "Name", "Email", "GroupID", "Created", "Modified" -Force
 
-$keyPath = Join-Path -Path ~ -ChildPath bitlytoken.xml
-if (Test-Path -path $keyPath) {
+$KeyPath = Join-Path -Path ~ -ChildPath BitlyToken.xml
+if (Test-Path -path $KeyPath) {
     #convert path to a full system path
-    $cPath = Convert-Path -path $keyPath
+    $cPath = Convert-Path -path $KeyPath
     try {
         $APIToken = Import-Clixml -Path $cPath -ErrorAction stop
-        $global:PSDefaultParameterValues["*-bitly*:apikey"] = $APIToken
+        $global:PSDefaultParameterValues["*-bitly*:APIKey"] = $APIToken
     }
     Catch {
-        Write-Warning "Failed to restore bitly API token from $keypath"
+        Write-Warning "Failed to restore bitly API token from $KeyPath"
         Throw $_
     }
 }

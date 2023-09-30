@@ -73,7 +73,7 @@ format type data generated 08/20/2019 10:58:31 by BOVINE320\Jeff
             <Alignment>right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>Timespan</Label>
+            <Label>TimeSpan</Label>
             <Width>11</Width>
             <Alignment>left</Alignment>
           </TableColumnHeader>
@@ -101,7 +101,7 @@ format type data generated 08/20/2019 10:58:31 by BOVINE320\Jeff
                 <PropertyName>TotalClicks</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Timespan</PropertyName>
+                <PropertyName>TimeSpan</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Count</PropertyName>

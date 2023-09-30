@@ -17,9 +17,9 @@
         <maml:name>Get-BitlyGroupLinks</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>GroupID</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter your Bitly group GUID or ID.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -29,9 +29,9 @@
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>APIKey</maml:name>
-          <maml:Description>
-            <maml:para>Enter your Bitly API token</maml:para>
-          </maml:Description>
+          <maml:description>
+            <maml:para>Enter your Bitly API token.</maml:para>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
           <dev:type>
             <maml:name>SecureString</maml:name>
@@ -41,9 +41,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CreatedAfter</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Filter for links created after this date.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
           <dev:type>
             <maml:name>DateTime</maml:name>
@@ -53,9 +53,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CreatedBefore</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Filter for links created before this date.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
           <dev:type>
             <maml:name>DateTime</maml:name>
@@ -65,9 +65,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Filter</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter a key word or phrase to filter on.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -77,9 +77,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ModifiedAfter</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Filter for links modified after this date.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
           <dev:type>
             <maml:name>DateTime</maml:name>
@@ -89,9 +89,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Size</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Specify the number of links to return. The default is 50. The limit for this command is 1000.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -101,9 +101,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Tags</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Filter links by tags.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
             <maml:name>String[]</maml:name>
@@ -116,9 +116,9 @@
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>APIKey</maml:name>
-        <maml:Description>
-          <maml:para>Enter your Bitly API token</maml:para>
-        </maml:Description>
+        <maml:description>
+          <maml:para>Enter your Bitly API token.</maml:para>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
         <dev:type>
           <maml:name>SecureString</maml:name>
@@ -128,9 +128,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CreatedAfter</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Filter for links created after this date.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
         <dev:type>
           <maml:name>DateTime</maml:name>
@@ -140,9 +140,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CreatedBefore</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Filter for links created before this date.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
         <dev:type>
           <maml:name>DateTime</maml:name>
@@ -152,9 +152,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Filter</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter a key word or phrase to filter on.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -164,9 +164,9 @@
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>GroupID</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter your Bitly group GUID or ID.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -176,9 +176,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ModifiedAfter</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Filter for links modified after this date.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
         <dev:type>
           <maml:name>DateTime</maml:name>
@@ -188,9 +188,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Size</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Specify the number of links to return. The default is 50. The limit for this command is 1000.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -200,9 +200,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Tags</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Filter links by tags.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
           <maml:name>String[]</maml:name>
@@ -224,7 +224,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <maml:name>PSBitlyLink</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -241,33 +241,32 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt;  Get-BitlyUser | Get-BitlyGroupLinks
 
-Created     : 10/21/2019 5:12:15 AM
-Link        : http://bit.ly/2oY3qty
+Created     : 4/8/2021 9:01:47 AM
+Link        : https://bit.ly/3tdSofy
 CustomLinks : {}
-Title       : Securing PowerShell
-Tags        : {class, PowerShell}
-ID          : bit.ly/2oY3qty
-Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip
+Title       : How to Add a Computer to a Domain [All the Ways]
+Tags        : {}
+ID          : bit.ly/3tdSofy
+Url         : https://adamtheautomator.com/add-computer-to-domain/
 
-Created     : 9/22/2019 7:46:54 PM
-Link        : http://bit.ly/2kZgOeW
-CustomLinks : {http://bit.ly/PowerShell-Advanced-Spiceworld2019}
-Title       : PowerShell Advanced Spiceworld 2019
-Tags        : {conference, powershell}
-ID          : bit.ly/2kZgOeW
-Url         : https://www.dropbox.com/s/7kdjfc7fvvjvjtr/PowerShell-Advanced-Spiceworld2019.zip?dl=0
+Created     : 4/7/2021 10:59:17 AM
+Link        : https://bit.ly/3wzzL7X
+CustomLinks : {}
+Title       : CloudSkills.fm
+Tags        : {}
+ID          : bit.ly/3wzzL7X
+Url         : https://cloudskills.fm/episodes/114-BI8Ng7H9
 
-Created     : 9/22/2019 7:44:45 PM
-Link        : http://bit.ly/2mvnz8X
-CustomLinks : {http://bit.ly/PowerShell-Fundamentals-Spiceworld2019}
-Title       : PowerShell Fundamentals Spiceworld 109
-Tags        : {conference, powershell}
-ID          : bit.ly/2mvnz8X
-Url         : https://www.dropbox.com/s/pjal0m0lgxeds8h/PowerShell-Fundamentals-Spiceworld2019.zip?dl=0
-
+Created     : 4/7/2021 10:01:48 AM
+Link        : https://bit.ly/2OyV4pi
+CustomLinks : {}
+Title       : How to Run Remote Commands with the Ansible Shell Module
+Tags        : {}
+ID          : bit.ly/2OyV4pi
+Url         : https://adamtheautomator.com/ansible-shell/
 ...</dev:code>
         <dev:remarks>
-          <maml:para></maml:para>
+          <maml:para>This example assumes you have set a PSDefaultParameterValue to specify the APIKey.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -299,9 +298,9 @@ Url         : https://www.dropbox.com/s/pjal0m0lgxeds8h/PowerShell-Fundamentals-
         <maml:name>Get-BitlyLink</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>ID</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter the bitly link i.e. bit.ly/&lt;short&gt;</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -311,9 +310,9 @@ Url         : https://www.dropbox.com/s/pjal0m0lgxeds8h/PowerShell-Fundamentals-
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>APIKey</maml:name>
-          <maml:Description>
-            <maml:para>Enter your Bitly API token</maml:para>
-          </maml:Description>
+          <maml:description>
+            <maml:para>Enter your Bitly API token.</maml:para>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
           <dev:type>
             <maml:name>SecureString</maml:name>
@@ -326,9 +325,9 @@ Url         : https://www.dropbox.com/s/pjal0m0lgxeds8h/PowerShell-Fundamentals-
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>APIKey</maml:name>
-        <maml:Description>
-          <maml:para>Enter your Bitly API token</maml:para>
-        </maml:Description>
+        <maml:description>
+          <maml:para>Enter your Bitly API token.</maml:para>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
         <dev:type>
           <maml:name>SecureString</maml:name>
@@ -338,9 +337,9 @@ Url         : https://www.dropbox.com/s/pjal0m0lgxeds8h/PowerShell-Fundamentals-
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>ID</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter the bitly link i.e. bit.ly/&lt;short&gt;</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -416,9 +415,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
         <maml:name>Get-BitlyLinkSummary</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>ID</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter the bitly link i.e. bit.ly/&lt;short&gt;</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -428,9 +427,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>APIKey</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter your Bitly API token</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
           <dev:type>
             <maml:name>SecureString</maml:name>
@@ -440,9 +439,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Count</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>An integer representing the time units to query data for. Use -1 to return all units of time.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -452,9 +451,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Size</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The number of items to return.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
@@ -463,10 +462,10 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
           <dev:defaultValue>50</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Timespan</maml:name>
-          <maml:Description>
+          <maml:name>TimeSpan</maml:name>
+          <maml:description>
             <maml:para>Enter a unit of time</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">day</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">minute</command:parameterValue>
@@ -486,9 +485,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>APIKey</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter your Bitly API token</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
         <dev:type>
           <maml:name>SecureString</maml:name>
@@ -498,9 +497,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Count</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>An integer representing the time units to query data for. Use -1 to return all units of time.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -510,9 +509,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>ID</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter the bitly link i.e. bit.ly/&lt;short&gt;</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -522,9 +521,9 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Size</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The number of items to return.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
@@ -533,10 +532,10 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
         <dev:defaultValue>50</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Timespan</maml:name>
-        <maml:Description>
+        <maml:name>TimeSpan</maml:name>
+        <maml:description>
           <maml:para>Enter a unit of time</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -573,13 +572,13 @@ Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip</
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-BitlyLinkSummary bit.ly/2KJtUqP -Timespan month -Count 3
+        <dev:code>PS C:\&gt; Get-BitlyLinkSummary bit.ly/39MTiZ8 -TimeSpan month -Count 1
 
-ID             TotalClicks Timespan Count Date
+ID             TotalClicks TimeSpan Count Date
 --             ----------- -------- ----- ----
-bit.ly/2KJtUqP 426         month    3     11/13/2019 3:56:01 PM</dev:code>
+bit.ly/39MTiZ8 70                   1     4/8/2021 11:48:22 AM</dev:code>
         <dev:remarks>
-          <maml:para>Get a link summary for the last 3 months.</maml:para>
+          <maml:para>Get a link summary for the last 1 months.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -607,9 +606,9 @@ bit.ly/2KJtUqP 426         month    3     11/13/2019 3:56:01 PM</dev:code>
         <maml:name>Get-BitlyUser</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>APIKey</maml:name>
-          <maml:Description>
-            <maml:para>Enter your Bitly API token</maml:para>
-          </maml:Description>
+          <maml:description>
+            <maml:para>Enter your Bitly API token.</maml:para>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
           <dev:type>
             <maml:name>SecureString</maml:name>
@@ -622,9 +621,9 @@ bit.ly/2KJtUqP 426         month    3     11/13/2019 3:56:01 PM</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>APIKey</maml:name>
-        <maml:Description>
-          <maml:para>Enter your Bitly API token</maml:para>
-        </maml:Description>
+        <maml:description>
+          <maml:para>Enter your Bitly API token.</maml:para>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
         <dev:type>
           <maml:name>SecureString</maml:name>
@@ -687,7 +686,7 @@ Modified : 11/2/2018 11:27:22 AM</dev:code>
       <command:verb>Get</command:verb>
       <command:noun>URLDetail</command:noun>
       <maml:description>
-        <maml:para>Get online details from a url</maml:para>
+        <maml:para>Get online details from a url.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -698,9 +697,9 @@ Modified : 11/2/2018 11:27:22 AM</dev:code>
         <maml:name>Get-URLDetail</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="link">
           <maml:name>URL</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter a URL in the form http:// or https://</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -713,9 +712,9 @@ Modified : 11/2/2018 11:27:22 AM</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="link">
         <maml:name>URL</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter a URL in the form http:// or https://</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -752,13 +751,12 @@ Modified : 11/2/2018 11:27:22 AM</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; get-urldetail http://bit.ly/2CHVAYy
+        <dev:code>PS C:\&gt; get-urldetail http://bit.ly/3tdSofy
 
-
-URL         : http://bit.ly/2CHVAYy
-AbsoluteURL : https://www.dropbox.com/s/5iz1vvhvtbfxdcd/CreatingRESTTools.zip
-Title       : Dropbox - CreatingRESTTools.zip - Simplify your life
-Date        : 11/13/2019 4:14:32 PM</dev:code>
+URL         : http://bit.ly/3tdSofy
+AbsoluteURL : https://adamtheautomator.com/add-computer-to-domain/
+Title       : How to Add a Computer to a Domain [All the Ways]
+Date        : 4/7/2021 1:09:28 PM</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -788,9 +786,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
         <maml:name>New-BitlyLink</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>Url</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter the long url to shorten</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -800,9 +798,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>APIKey</maml:name>
-          <maml:Description>
-            <maml:para>Enter your Bitly API token</maml:para>
-          </maml:Description>
+          <maml:description>
+            <maml:para>Enter your Bitly API token.</maml:para>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
           <dev:type>
             <maml:name>SecureString</maml:name>
@@ -812,9 +810,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -823,9 +821,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -837,9 +835,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>APIKey</maml:name>
-        <maml:Description>
-          <maml:para>Enter your Bitly API token</maml:para>
-        </maml:Description>
+        <maml:description>
+          <maml:para>Enter your Bitly API token.</maml:para>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
         <dev:type>
           <maml:name>SecureString</maml:name>
@@ -849,9 +847,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -861,9 +859,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Url</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter the long url to shorten</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -873,9 +871,9 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -912,16 +910,15 @@ Date        : 11/13/2019 4:14:32 PM</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-BitlyLink -url https://github.com/powershell/powershell
+        <dev:code>PS C:\&gt; New-BitlyLink -url  https://github.com/jdhitsolutions/jdhitsolutions
 
-
-Created     : 12/31/1969 7:00:00 PM
-Link        : http://bit.ly/32GPRwt
+Created     : 4/8/2021 11:34:07 AM
+Link        : https://bit.ly/3fUJsIb
 CustomLinks : {}
 Title       :
 Tags        : {}
-ID          : bit.ly/32GPRwt
-Url         : https://github.com/powershell/powershell</dev:code>
+ID          : bit.ly/3fUJsIb
+Url         : https://github.com/jdhitsolutions/jdhitsolutions</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -944,7 +941,7 @@ Url         : https://github.com/powershell/powershell</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use of the bitly REST API requires an API key or token, which you can setup under your account online. Most commands in this module require the token for authentication purposes. To protect the token and make it easier to use the commands, you can run Save-Bitlytoken to store the token as a secure string in a file. The file is called bitlytoken.xml and is stored in your $home (~) directory. You will be prompted to enter or paste your token which is immediately saved as a secure string. This string is then exported to a cliXML file. This file can only be decrypted by you on the machine where it was created.</maml:para>
+      <maml:para>Use of the bitly REST API requires an API key or token, which you can setup under your account online. Most commands in this module require the token for authentication purposes. To protect the token and make it easier to use the commands, you can run Save-BitlyToken to store the token as a secure string in a file. The file is called BitlyToken.xml and is stored in your $home (~) directory. You will be prompted to enter or paste your token which is immediately saved as a secure string. This string is then exported to a cliXML file. This file can only be decrypted by you on the machine where it was created.</maml:para>
       <maml:para>When you import the PSBitly module, if this file is found, it will be decrypted and the value stored as a secure string in a PSDefaultParameter value for the bitly commands.</maml:para>
     </maml:description>
     <command:syntax>
@@ -952,9 +949,9 @@ Url         : https://github.com/powershell/powershell</dev:code>
         <maml:name>Save-BitlyToken</maml:name>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -963,9 +960,9 @@ Url         : https://github.com/powershell/powershell</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -977,9 +974,9 @@ Url         : https://github.com/powershell/powershell</dev:code>
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -989,9 +986,9 @@ Url         : https://github.com/powershell/powershell</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1043,7 +1040,7 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       <command:verb>Set</command:verb>
       <command:noun>BitlyLink</command:noun>
       <maml:description>
-        <maml:para>Modify an existing bitly link</maml:para>
+        <maml:para>Modify an existing bitly link.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -1054,9 +1051,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         <maml:name>Set-BitlyLink</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>ID</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter the bitly link i.e. bit.ly/&lt;short&gt;</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -1066,9 +1063,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>APIKey</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter your Bitly API token</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
           <dev:type>
             <maml:name>SecureString</maml:name>
@@ -1078,9 +1075,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Archive</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>THIS PARAMETER IS UNDER DEVELOPMENT</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1089,9 +1086,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1100,9 +1097,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Tags</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>specify a set of tags</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
             <maml:name>String[]</maml:name>
@@ -1112,9 +1109,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Title</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Add a title</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -1124,9 +1121,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -1138,9 +1135,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>APIKey</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter your Bitly API token</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
         <dev:type>
           <maml:name>SecureString</maml:name>
@@ -1150,9 +1147,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Archive</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>THIS PARAMETER IS UNDER DEVELOPMENT</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1162,9 +1159,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1174,9 +1171,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>ID</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter the bitly link i.e. bit.ly/&lt;short&gt;</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -1186,9 +1183,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Tags</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>specify a set of tags</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
           <maml:name>String[]</maml:name>
@@ -1198,9 +1195,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Title</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Add a title</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -1210,9 +1207,9 @@ Enter or copy your Bitly API key or token.: *********************</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>

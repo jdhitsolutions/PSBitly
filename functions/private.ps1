@@ -18,7 +18,7 @@ function _createPSBitlyLink {
     $new.Tags = $item.tags
     $new.Title = $item.Title
     $new.Url = $item.long_url
-    $new.deeplinks = $item.deeplinks
+    $new.DeepLinks = $item.DeepLinks
     $new.references = $item.references
     $new.ClientID = $item.client_id
     $new.raw = $item
