@@ -1,6 +1,6 @@
 #these are internal and private helper functions
 
-function _createPSBitlyLink {
+function _CreatePSBitlyLink {
     [CmdletBinding()]
     Param(
         [object]$Item
@@ -23,10 +23,15 @@ function _createPSBitlyLink {
     $new.ClientID = $item.client_id
     $new.raw = $item
 
-    $new
+    if ($new.raw) {
+        $new
+    }
+    else {
+        Write-Warning "Failed to create the PSBitlyLink object."
+    }
 }
 
-Function _createPSBitlyUser {
+Function _CreatePSBitlyUser {
     [CmdletBinding()]
     Param([object]$Item)
 

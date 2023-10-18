@@ -1,39 +1,36 @@
-
 #region classes
 
 Class PSBitlyLink {
-
-    [datetime]$Created
-    [string]$ID
-    [string]$Link
-    [string[]]$CustomLinks
-    [string]$Url
-    [string]$Title
+    [DateTime]$Created
+    [String]$ID
+    [String]$Link
+    [String[]]$CustomLinks
+    [String]$Url
+    [String]$Title
     [bool]$Archived
-    [string]$CreatedBy
-    [string[]]$Tags
+    [String]$CreatedBy
+    [String[]]$Tags
     hidden [object[]]$DeepLinks
     hidden [object[]]$References
-    hidden [string]$ClientID
+    hidden [String]$ClientID
 
     #the Raw property will hold the original result from the API request
     hidden [object]$Raw
 
-    # I am using a private function, _createPSBitlyLink as a constructor
+    # I am using a private function, _CreatePSBitlyLink as a constructor
 
 }
 
 Class PSBitlyUser {
-
-    [string]$Name
-    [datetime]$Created
-    [datetime]$Modified
-    [string]$Email
-    [string]$GroupID
+    [String]$Name
+    [DateTime]$Created
+    [DateTime]$Modified
+    [String]$Email
+    [String]$GroupID
     hidden [bool]$IsActive
     hidden [bool]$Is2FA
     hidden [bool]$IsSSO
-    hidden [string]$Login
+    hidden [String]$Login
 
     #the Raw property will hold the original result from the API request
     hidden [object]$Raw
@@ -43,17 +40,14 @@ Class PSBitlyUser {
 
 #endregion
 
-# dot source public functions
-. $PSScriptRoot\functions\functions.ps1
-
-#dot source private functions
-. $PSScriptRoot\functions\private.ps1
+# dot source functions
+(Get-ChildItem $PSScriptRoot\functions\*.ps1).ForEach({. $_.FullName})
 
 #define default display properties
 Update-TypeData -TypeName PSBitlyLinks -DefaultDisplayPropertySet "Created", "Link", "CustomLinks", "Title", "Tags", "ID", "Url" -Force
 Update-TypeData -TypeName PSBitlyUser -DefaultDisplayPropertySet "Name", "Email", "GroupID", "Created", "Modified" -Force
 
-$KeyPath = Join-Path -Path ~ -ChildPath BitlyToken.xml
+$KeyPath = Join-Path -Path $HOME -ChildPath BitlyToken.xml
 if (Test-Path -path $KeyPath) {
     #convert path to a full system path
     $cPath = Convert-Path -path $KeyPath
@@ -65,5 +59,8 @@ if (Test-Path -path $KeyPath) {
         Write-Warning "Failed to restore bitly API token from $KeyPath"
         Throw $_
     }
+}
+Else {
+    #the user can use whatever mechanism they want to store the API Key
 }
 

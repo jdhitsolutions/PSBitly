@@ -1,7 +1,7 @@
 ---
 external help file: PSBitly-help.xml
 Module Name: PSBitly
-online version:
+online version: https://bit.ly/3tdMWyp
 schema: 2.0.0
 ---
 

@@ -1,7 +1,7 @@
 ---
 external help file: PSBitly-help.xml
 Module Name: PSBitly
-online version:
+online version: https://bit.ly/3t5mCGv
 schema: 2.0.0
 ---
 
@@ -26,7 +26,7 @@ Use this command to get your bitly user object. You might need the GroupID value
 ### Example 1
 
 ```powershell
-PS C:\> get-bitlyuser
+PS C:\> Get-BitlyUser
 
 
 Name     : Art Deco
@@ -73,4 +73,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-BitlyGroupLinks](Get-BitlyGroupLinks.md)
+[Get-BitlyGroupLink](Get-BitlyGroupLink.md)

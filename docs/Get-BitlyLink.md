@@ -1,7 +1,7 @@
 ---
 external help file: PSBitly-help.xml
 Module Name: PSBitly
-online version:
+online version: https://bit.ly/3ZRXAat
 schema: 2.0.0
 ---
 
@@ -26,16 +26,18 @@ If you have a bitly link, like bit.ly/ABC123, you can use this command to retrie
 ### Example 1
 
 ```powershell
-PS C:\> get-bitlylink -id bit.ly/2oY3qty
+PS C:\> Get-BitlyLink bit.ly/3PHxVgZ
 
 
-Created     : 10/21/2019 5:12:15 AM
-Link        : http://bit.ly/2oY3qty
+Created     : 9/20/2023 2:35:42 PM
+Link        : https://bit.ly/3PHxVgZ
 CustomLinks : {}
-Title       : Securing PowerShell
-Tags        : {class, PowerShell}
-ID          : bit.ly/2oY3qty
-Url         : https://www.dropbox.com/s/353ndxn9ntowmlf/SecuringPowerShell.zip
+Title       : PowerShellGet 3.0.22-beta22 is now available - PowerShell Team
+Tags        : {}
+ID          : bit.ly/3PHxVgZ
+Url         : https://devblogs.microsoft.com/powershell/powershellget-3-0-22-bet
+              a22-is-now-available/
+
 ```
 
 ## PARAMETERS
@@ -91,4 +93,4 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-BitlyGroupLinks](Get-BitlyGroupLinks.md)
+[Get-BitlyGroupLink](Get-BitlyGroupLink.md)

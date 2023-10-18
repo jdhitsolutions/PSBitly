@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-BitlyGroupLinks
+# Get-BitlyGroupLink
 
 ## SYNOPSIS
 
@@ -14,48 +14,68 @@ Get bitly links associated with your group
 ## SYNTAX
 
 ```yaml
-Get-BitlyGroupLinks [-GroupID] <String> -APIKey <SecureString> [-Size <Int32>] [-Tags <String[]>] [-Filter <String>] [-CreatedBefore <DateTime>]
--CreatedAfter <DateTime>] [-ModifiedAfter <DateTime>] [<CommonParameters>]
+Get-BitlyGroupLink [-GroupID] <String> -APIKey <SecureString> [-Size <Int32>] [-Tags <String[]>]  [-Filter <String>] [-CreatedBefore <DateTime>] [-CreatedAfter <DateTime>] [-ModifiedAfter <DateTime>]  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Use this command to get links associated with your group ID which you can find as part of your user object.
+Use this command to get all links associated with your group ID which you can find as part of your user object. You might want to set a default parameter value for the GroupID:
+
+$PSDefaultParameterValues["*-bitly*:GroupID"] = (Get-BitlyUser).GroupID
+
+This example assumes you've already set a default parameter value for the APIKey.
 
 ## EXAMPLES
 
 ### Example 1
 
 ```powershell
-PS C:\>  Get-BitlyUser | Get-BitlyGroupLinks
+PS C:\> Get-BitlyUser | Get-BitlyGroupLink | Select-Object -last 3
 
-Created     : 4/8/2021 9:01:47 AM
-Link        : https://bit.ly/3tdSofy
-CustomLinks : {}
-Title       : How to Add a Computer to a Domain [All the Ways]
-Tags        : {}
-ID          : bit.ly/3tdSofy
-Url         : https://adamtheautomator.com/add-computer-to-domain/
 
-Created     : 4/7/2021 10:59:17 AM
-Link        : https://bit.ly/3wzzL7X
+Created     : 9/30/2023 10:39:23 AM
+Link        : https://bit.ly/3tiB3HC
 CustomLinks : {}
-Title       : CloudSkills.fm
-Tags        : {}
-ID          : bit.ly/3wzzL7X
-Url         : https://cloudskills.fm/episodes/114-BI8Ng7H9
+Title       : PSBitly Get-BitlyGroupLink Help
+Tags        : {github, powershell}
+ID          : bit.ly/3tiB3HC
+Url         : https://github.com/jdhitsolutions/PSBitly/blob/master/docs/Get-Bit
+              lyGroupLinks.md
 
-Created     : 4/7/2021 10:01:48 AM
-Link        : https://bit.ly/2OyV4pi
+Created     : 9/30/2023 10:39:28 AM
+Link        : https://bit.ly/48wII59
 CustomLinks : {}
-Title       : How to Run Remote Commands with the Ansible Shell Module
-Tags        : {}
-ID          : bit.ly/2OyV4pi
-Url         : https://adamtheautomator.com/ansible-shell/
-...
+Title       : PSBitly Get-BitlyLinkSummary Help
+Tags        : {github, powershell}
+ID          : bit.ly/48wII59
+Url         : https://github.com/jdhitsolutions/PSBitly/blob/master/docs/Get-Bit
+              lyLinkSummary.md
+
+Created     : 9/30/2023 10:39:34 AM
+Link        : https://bit.ly/3PwXgsK
+CustomLinks : {}
+Title       : PSBitly Save-BitlyToken Help
+Tags        : {github, powershell}
+ID          : bit.ly/3PwXgsK
+Url         : https://github.com/jdhitsolutions/PSBitly/blob/master/docs/Save-Bi
+              tlyToken.md
 ```
 
 This example assumes you have set a PSDefaultParameterValue to specify the APIKey.
+
+### Example 2
+
+```powershell
+PS C:\> Get-BitlyUser | Get-BitlyGroupLink -CreatedAfter 9/1/2023 | Select-Object Link ,Title -first 5
+
+Link                   Title
+----                   -----
+https://bit.ly/3qTHm3x Troubleshooting and Fixing Kubernetes CrashLoopBackOff
+https://bit.ly/3sJRFrr A Guide to Using Certutil for Certificate Management
+https://bit.ly/3Z4GiGB HOOBS & Raspberry Pi: The Perfect DIY Smart Home Combo
+https://bit.ly/4876og7 PSResourceGet Release Candidate is Now Available - Pow...
+https://bit.ly/462MKjw OnyX macOS: Your Ultimate Guide to Installation and Usage
+```
 
 ## PARAMETERS
 

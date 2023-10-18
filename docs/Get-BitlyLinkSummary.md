@@ -1,7 +1,7 @@
 ---
 external help file: PSBitly-help.xml
 Module Name: PSBitly
-online version:
+online version: https://bit.ly/48wII59
 schema: 2.0.0
 ---
 
@@ -26,14 +26,40 @@ You can use this command to get a summary of clicks for a given bitly link over 
 ### Example 1
 
 ```powershell
-PS C:\> Get-BitlyLinkSummary bit.ly/39MTiZ8 -TimeSpan month -Count 1
+PS C:\> Get-BitlyLinkSummary bit.ly/3PHxVgZ  -TimeSpan Month | Format-List
 
-ID             TotalClicks TimeSpan Count Date
---             ----------- -------- ----- ----
-bit.ly/39MTiZ8 70                   1     4/8/2021 11:48:22 AM
+
+ID          : bit.ly/3PHxVgZ
+Title       : PowerShellGet 3.0.22-beta22 is now available - PowerShell Team
+TotalClicks : 8
+TimeSpan    : Month
+Count       : 1
+Date        : 9/30/2023 4:30:36 PM
+
 ```
 
-Get a link summary for the last 1 months.
+Get a link summary for the last 1 month.
+
+### Example 2
+
+```powershell
+PS C:\> Get-BitlyGroupLink -CreatedAfter 7/1/2023  | Get-BitlyLinkSummary -TimeSpan Month -Count -1 | Sort-Object TotalClicks -Descending | Select-Object ID,TotalClicks,Title -first 10
+
+ID             TotalClicks Title
+--             ----------- -----
+bit.ly/3Pco9C9          72 Announcing PowerShell Crescendo 1.1.0 General Avai...
+bit.ly/3sJRFrr          41 A Guide to Using Certutil for Certificate Management
+bit.ly/46qzkye          24 Mastering the Windows Kill Process: A Comprehensiv...
+bit.ly/4876og7          21 PSResourceGet Release Candidate is Now Available -...
+bit.ly/48AIUjA          15 Release mySQLite_v0.12.0 Â· jdhitsolutions/MySQLit...
+bit.ly/48wKR0t          14 NPM on Windows: Your Complete Installation Guide f...
+bit.ly/3t1iAiF          14 whoami: A Comprehensive Guide to OS User Identific...
+bit.ly/3LhuCe0          12 Redis on Windows: A Comprehensive Installation Guide
+bit.ly/3ru5rOs          11 Release PSWorkItem_v1.3.0 Â· jdhitsolutions/PSWork...
+bit.ly/3Z4GiGB          10 HOOBS & Raspberry Pi: The Perfect DIY Smart Home C...
+```
+
+Get the top ten links based on click count over the last mont, on links created after July 1, 2023.
 
 ## PARAMETERS
 
