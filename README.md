@@ -4,14 +4,14 @@ Create and work with Bit.ly shortcut links from a PowerShell prompt. Many of the
 
 ## Commands
 
-- [Get-BitlyGroupLink](docs\Get-BitlyGroupLink.md)
-- [Get-BitlyLink](docs\Get-BitlyLink.md)
-- [Get-BitlyLinkSummary](docs\Get-BitlyLinkSummary.md)
-- [Get-BitlyUser](docs\Get-BitlyUser.md)
-- [Get-URLDetail](docs\Get-URLDetail.md)
-- [New-BitlyLink](docs\New-BitlyLink.md)
-- [Save-BitlyToken](docs\Save-BitlyToken.md)
-- [Set-BitlyLink](docs\Set-BitlyLink.md)
+- [Get-BitlyGroupLink](docs/Get-BitlyGroupLink.md)
+- [Get-BitlyLink](docs/Get-BitlyLink.md)
+- [Get-BitlyLinkSummary](docs/Get-BitlyLinkSummary.md)
+- [Get-BitlyUser](docs/Get-BitlyUser.md)
+- [Get-URLDetail](docs/Get-URLDetail.md)
+- [New-BitlyLink](docs/New-BitlyLink.md)
+- [Save-BitlyToken](docs/Save-BitlyToken.md)
+- [Set-BitlyLink](docs/Set-BitlyLink.md)
 
 ## API Key
 
