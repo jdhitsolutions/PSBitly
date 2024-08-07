@@ -159,3 +159,5 @@ Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
+
+[Export-BitlyConfiguration](Export-BitlyConfiguration.md)

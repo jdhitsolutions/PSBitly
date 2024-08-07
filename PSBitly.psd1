@@ -1,7 +1,7 @@
 
 @{
     RootModule           = 'PSBitly.psm1'
-    ModuleVersion        = '0.6.0'
+    ModuleVersion        = '0.7.0'
     CompatiblePSEditions = @('Desktop', 'Core')
     GUID                 = '94f535a4-89c1-4044-9cc0-eb7514e2042b'
     Author               = 'Jeff Hicks'
@@ -12,10 +12,10 @@
     # TypesToProcess = @()
     FormatsToProcess     = @('formats\psbitlylinks.format.ps1xml', 'formats\urldetail.format.ps1xml')
     FunctionsToExport    = @('Get-BitlyGroupLink', 'Get-BitlyLink', 'Get-BitlyLinkSummary', 'Get-BitlyUser', 'New-BitlyLink', 'Set-BitlyLink',
-        'Get-URLDetail', 'Save-BitlyToken')
+        'Get-URLDetail', 'Save-BitlyToken', 'Export-BitlyConfiguration')
     CmdletsToExport      = @()
     VariablesToExport    = @()
-    AliasesToExport      = @()
+    AliasesToExport      = @('Export-BitlyToken')
 
     PrivateData          = @{
         PSData = @{
@@ -30,6 +30,3 @@
     } # End of PrivateData hashtable
 
 }
-
-
-

@@ -64,3 +64,15 @@ Else {
     #the user can use whatever mechanism they want to store the API Key
 }
 
+#load saved user information if exported
+$PSBitlyConfigPath = Join-Path $home -ChildPath ".psbitlyconfig.json"
+if (Test-Path -Path $PSBitlyConfigPath) {
+    try {
+        $PSBitlyConfig = Get-Content -Path $PSBitlyConfigPath -ErrorAction stop | ConvertFrom-Json
+        $global:PSDefaultParameterValues["*-bitly*:GroupID"] = $PSBitlyConfig.GroupID
+    }
+    Catch {
+        Write-Warning "Failed to restore bitly user information from $PSBitlyConfigPath"
+    }
+}
+

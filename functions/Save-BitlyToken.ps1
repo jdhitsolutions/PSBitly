@@ -1,6 +1,7 @@
 Function Save-BitlyToken {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = 'prompt')]
     [OutputType('None', 'System.IO.FileInfo')]
+    [alias("Export-BitlyToken")]
     Param(
         [Parameter(
             Position = 0,
@@ -35,6 +36,8 @@ Function Save-BitlyToken {
             catch {
                 Throw $_
             }
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Setting the default parameter value"
+            #set the default cmdlet value using the API key
             $global:PSDefaultParameterValues['*-bitly*:APIKey'] = $Token
         }
     } #process

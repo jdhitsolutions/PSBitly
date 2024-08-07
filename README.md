@@ -1,5 +1,7 @@
 # PSBitly
 
+**This module is now deprecated and is no longer in development. Bitly changed their API model and pricing structure which is not compatible with this module. I am leaving the repository up for reference purposes only.**
+
 Create and work with Bit.ly shortcut links from a PowerShell prompt. Many of the commands are based on Bitly's [v4 API Documentation](https://dev.bitly.com/v4_documentation.html). Almost all of these commands will require you to get an API Key or OAuth token under your Bit.ly account settings.
 
 ## Commands
@@ -22,11 +24,11 @@ $APIToken = <your process to get the value>
 $PSDefaultParameterValues["*-bitly*:APIKey"] = $APIToken
 ```
 
-Run `Save-BitlyToken` to store the token as a secure string in a file. The file is called `BitlyToken.xml` and is stored in your `$HOME`` directory. You will be prompted to enter or paste your token which is immediately saved as a secure string. This string is then exported to a cliXML file. __This file can only be decrypted by you on the machine where it was created__.
+Run `Save-BitlyToken` to store the token as a secure string in a file. The file is called `BitlyToken.xml` and is stored in your `$HOME` directory. You will be prompted to enter or paste your token which is immediately saved as a secure string. This string is then exported to a cliXML file. __This file can only be decrypted by you on the machine where it was created__.
 
-When you import the PSBitly module, if this file is found, it will be decrypted and the value stored as a secure string in a PSDefaultParameter value for the bitly commands.
+When you import the PSBitly module, if this file is found, it will be decrypted and the value stored as a secure string in a PSDefaultParameter value for the module commands.
 
-Don't forget that there are API limits. If you run repeated commands in a very short time, you might get errors about exceeding limits. All you can do is wait a bit and try again.
+> :exclamation: Don't forget that there are API limits. If you run repeated commands in a very short time, you might get errors about exceeding limits. All you can do is wait a bit and try again.
 
 ## Workflow
 
@@ -81,7 +83,7 @@ bit.ly/46XEsKr  Using the Pure Storage PowerShellSDK2 - Part…           4 Day 
 Use `New-BitlyLink` to create a new link from a given url.
 
 ```powershell
-PS C:\> New-Bitlylink -url https://bsky.app/profile/jeffhicks.bsky.social
+PS C:\> New-BitlyLink -url https://bsky.app/profile/jeffhicks.bsky.social
 
 Created     : 10/18/2023 4:38:02 PM
 Link        : https://bit.ly/491ATVa
